@@ -509,17 +509,76 @@
       }
 
       .note {margin-top:3vh; font-size:.9rem; color:var(--text-muted); border-left:2px solid var(--line-strong); padding-left:1.4vw; max-width:60ch; line-height:1.55;}
-      .text-content{ margin-top: 5vh; color: var(--text-light); line-height: 1.8; font-size: 1.15rem; max-width: 75ch; }
-      .text-content h3 { font-family: 'Fraunces', serif; font-size: 2rem; margin-top: 6vh; margin-bottom: 2.5vh; font-weight: 600; color: var(--amber); }
-      .text-content h4 { font-family: 'Inter', sans-serif; font-size: 1.4rem; margin-top: 4.5vh; margin-bottom: 1.5vh; font-weight: 600; color: var(--text-light); border-bottom: 1px solid var(--line); padding-bottom: 1vh;}
-      .text-content p { margin-bottom: 2.5vh; }
-      .text-content ul { margin-left: 2.5vw; margin-bottom: 3vh; }
-      .text-content li { margin-bottom: 1.5vh; }
-      .text-content strong { color: var(--amber); font-weight: 600; }
-      .visual-support { width: 100%; max-width: 700px; height: auto; border-radius: 12px; margin: 4vh 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--line-strong); display: block;}
-      .example-box { background: rgba(61,110,150,0.08); border-left: 4px solid var(--blue); padding: 3vh 2vw; margin: 4vh 0; border-radius: 0 8px 8px 0; max-width: 75ch; }
-      .example-box h5 { font-family: 'IBM Plex Mono', monospace; font-size: .9rem; color: var(--blue); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1.5vh; }
-      .example-box p { margin-bottom: 1vh; font-size: 1.05rem; }
+      .text-content {
+        margin-top: 5vh;
+        color: var(--text-light);
+        line-height: 1.8;
+        font-size: 1.15rem;
+        max-width: 75ch;
+        overflow-wrap: break-word;
+      }
+      .text-content h3 {
+        font-family: "Fraunces", serif;
+        font-size: 2rem;
+        margin-top: 6vh;
+        margin-bottom: 2.5vh;
+        font-weight: 600;
+        color: var(--amber);
+      }
+      .text-content h4 {
+        font-family: "Inter", sans-serif;
+        font-size: 1.4rem;
+        margin-top: 4.5vh;
+        margin-bottom: 1.5vh;
+        font-weight: 600;
+        color: var(--text-light);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 1vh;
+      }
+      .text-content p {
+        margin-bottom: 2.5vh;
+      }
+      .text-content ul {
+        margin-left: 2.5vw;
+        margin-bottom: 3vh;
+      }
+      .text-content li {
+        margin-bottom: 1.5vh;
+      }
+      .text-content strong {
+        color: var(--amber);
+        font-weight: 600;
+      }
+      .visual-support {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        border-radius: 12px;
+        margin: 4vh 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--line-strong);
+        display: block;
+      }
+      .example-box {
+        background: rgba(61, 110, 150, 0.08);
+        border-left: 4px solid var(--blue);
+        padding: clamp(1.2rem, 3vw, 2rem) clamp(1.2rem, 3vw, 2.5rem);
+        margin: 4vh 0;
+        border-radius: 0 8px 8px 0;
+        max-width: 75ch;
+      }
+      .example-box h5 {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.9rem;
+        color: var(--blue);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 1.5vh;
+      }
+      .example-box p {
+        margin-bottom: 1vh;
+        font-size: 1.05rem;
+      }
 
       /* ---------- SYNTH TABLE ---------- */
       table.synth {
