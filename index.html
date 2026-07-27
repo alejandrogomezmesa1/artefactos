@@ -1,491 +1,1385 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Artefactos de Scrum</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#1B1D21;
-    --ink-soft:#232629;
-    --paper:#F1ECDF;
-    --paper-dim:#E3DBC6;
-    --text-light:#F4F1E6;
-    --text-muted:#9A9686;
-    --text-ink:#211F1A;
-    --text-ink-muted:#6B6455;
-    --blue:#3D6E96;
-    --blue-soft:rgba(61,110,150,0.12);
-    --amber:#CE8A3E;
-    --amber-soft:rgba(206,138,62,0.14);
-    --line:rgba(244,241,230,0.13);
-    --line-strong:rgba(244,241,230,0.26);
-    --line-ink:rgba(33,31,26,0.14);
-    --line-ink-strong:rgba(33,31,26,0.3);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--ink);
-    color:var(--text-light);
-    font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  section{padding:14vh 8vw; position:relative;}
-  .wrap{max-width:1180px; margin:0 auto;}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Artefactos de Scrum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1b1d21;
+        --ink-soft: #232629;
+        --paper: #f1ecdf;
+        --paper-dim: #e3dbc6;
+        --text-light: #f4f1e6;
+        --text-muted: #9a9686;
+        --text-ink: #211f1a;
+        --text-ink-muted: #6b6455;
+        --blue: #3d6e96;
+        --blue-soft: rgba(61, 110, 150, 0.12);
+        --amber: #ce8a3e;
+        --amber-soft: rgba(206, 138, 62, 0.14);
+        --line: rgba(244, 241, 230, 0.13);
+        --line-strong: rgba(244, 241, 230, 0.26);
+        --line-ink: rgba(33, 31, 26, 0.14);
+        --line-ink-strong: rgba(33, 31, 26, 0.3);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--ink);
+        color: var(--text-light);
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      section {
+        padding: 14vh 8vw;
+        position: relative;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
 
-  .tag{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:.8rem;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--text-muted);
-    display:flex; align-items:center; gap:12px;
-  }
-  .tag .dot{width:7px; height:7px; border-radius:50%; background:var(--amber); flex:none;}
-  .tag b{color:var(--amber); font-weight:500;}
+      .tag {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .tag .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--amber);
+        flex: none;
+      }
+      .tag b {
+        color: var(--amber);
+        font-weight: 500;
+      }
 
-  h1,h2,h3{font-family:'Fraunces',serif; letter-spacing:-.01em; color:var(--text-light);}
-  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
-  .reveal.on{opacity:1; transform:translateY(0);}
+      h1,
+      h2,
+      h3 {
+        font-family: "Fraunces", serif;
+        letter-spacing: -0.01em;
+        color: var(--text-light);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.on {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-  /* ---------- NAV ---------- */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:2.4vh 4vw;
-    background:rgba(27,29,33,.78);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav .brand{font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-light);}
-  nav .brand b{color:var(--amber);}
-  nav ul{list-style:none; display:flex; gap:2.4vw;}
-  nav a{color:var(--text-muted); text-decoration:none; font-size:.82rem; font-family:'IBM Plex Mono',monospace; letter-spacing:.05em; transition:color .2s;}
-  nav a:hover{color:var(--amber);}
-  @media (max-width:760px){ nav ul{display:none;} }
+      /* ---------- NAV ---------- */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.4vh 4vw;
+        background: rgba(27, 29, 33, 0.78);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav .brand {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-light);
+      }
+      nav .brand b {
+        color: var(--amber);
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2.4vw;
+      }
+      nav a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-family: "IBM Plex Mono", monospace;
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+      }
+      nav a:hover {
+        color: var(--amber);
+      }
+      @media (max-width: 760px) {
+        nav ul {
+          display: none;
+        }
+      }
 
-  /* ---------- HERO ---------- */
-  .hero{min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding-top:14vh;}
-  .hero h1{font-weight:600; font-size:clamp(2.6rem,7vw,6.4rem); line-height:.98; margin-top:2.2vh; max-width:16ch;}
-  .hero .sub{font-family:'Fraunces',serif; font-style:italic; font-weight:500; color:var(--amber); font-size:clamp(1.1rem,2vw,1.7rem); margin-top:2vh; max-width:34ch;}
-  .hero p.lead{margin-top:3.4vh; font-size:clamp(1.05rem,1.5vw,1.25rem); color:var(--text-muted); max-width:56ch; line-height:1.6;}
-  .hero .meta-row{display:flex; gap:3vw; margin-top:5vh; flex-wrap:wrap;}
-  .meta-item{border-top:1px solid var(--line-strong); padding-top:1.4vh; min-width:160px;}
-  .meta-item .k{font-family:'IBM Plex Mono',monospace; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted);}
-  .meta-item .v{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; margin-top:.4rem;}
-  .scroll-cue{position:absolute; bottom:5vh; left:8vw; font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.1em; color:var(--text-muted); display:flex; align-items:center; gap:10px;}
-  .scroll-cue .line{width:1px; height:34px; background:linear-gradient(var(--amber),transparent); animation:pulse 2s infinite;}
-  @keyframes pulse{0%,100%{opacity:.4;} 50%{opacity:1;}}
+      /* ---------- HERO ---------- */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 14vh;
+      }
+      .hero h1 {
+        font-weight: 600;
+        font-size: clamp(2.6rem, 7vw, 6.4rem);
+        line-height: 0.98;
+        margin-top: 2.2vh;
+        max-width: 16ch;
+      }
+      .hero .sub {
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-weight: 500;
+        color: var(--amber);
+        font-size: clamp(1.1rem, 2vw, 1.7rem);
+        margin-top: 2vh;
+        max-width: 34ch;
+      }
+      .hero p.lead {
+        margin-top: 3.4vh;
+        font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+        color: var(--text-muted);
+        max-width: 56ch;
+        line-height: 1.6;
+      }
+      .hero .meta-row {
+        display: flex;
+        gap: 3vw;
+        margin-top: 5vh;
+        flex-wrap: wrap;
+      }
+      .meta-item {
+        border-top: 1px solid var(--line-strong);
+        padding-top: 1.4vh;
+        min-width: 160px;
+      }
+      .meta-item .k {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+      .meta-item .v {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: 1.05rem;
+        margin-top: 0.4rem;
+      }
+      .scroll-cue {
+        position: absolute;
+        bottom: 5vh;
+        left: 8vw;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .scroll-cue .line {
+        width: 1px;
+        height: 34px;
+        background: linear-gradient(var(--amber), transparent);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
 
-  /* ---------- CONTEXTO ---------- */
-  .context blockquote{
-    font-family:'Fraunces',serif; font-size:clamp(1.3rem,2.6vw,2.1rem); font-weight:500; line-height:1.4;
-    max-width:44ch; color:var(--text-light); margin-top:3vh; padding-left:2.4vw; border-left:2px solid var(--amber);
-  }
-  .context cite{display:block; font-style:normal; font-family:'IBM Plex Mono',monospace; font-size:.8rem; color:var(--text-muted); margin-top:1.4vh;}
-  .plate-row{display:flex; gap:2vw; margin-top:5vh; flex-wrap:wrap;}
-  .plate{background:var(--ink-soft); border:1px solid var(--line); border-left:3px solid var(--blue); padding:2.4vh 1.8vw; flex:1 1 220px;}
-  .plate .plate-label{font-family:'IBM Plex Mono',monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted);}
-  .plate .plate-value{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(1.05rem,1.6vw,1.4rem); margin-top:.6rem;}
+      /* ---------- CONTEXTO ---------- */
+      .context blockquote {
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+        font-weight: 500;
+        line-height: 1.4;
+        max-width: 44ch;
+        color: var(--text-light);
+        margin-top: 3vh;
+        padding-left: 2.4vw;
+        border-left: 2px solid var(--amber);
+      }
+      .context cite {
+        display: block;
+        font-style: normal;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 1.4vh;
+      }
+      .plate-row {
+        display: flex;
+        gap: 2vw;
+        margin-top: 5vh;
+        flex-wrap: wrap;
+      }
+      .plate {
+        background: var(--ink-soft);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--blue);
+        padding: 2.4vh 1.8vw;
+        flex: 1 1 220px;
+      }
+      .plate .plate-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+      .plate .plate-value {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+        margin-top: 0.6rem;
+      }
 
-  /* ---------- ARTEFACTOS HIGHLIGHT SECTION ---------- */
-  #artefactos{
-    background:var(--paper);
-    color:var(--text-ink);
-    padding:16vh 8vw;
-    position:relative;
-    overflow:hidden;
-  }
-  #artefactos::before{
-    content:'ARTEFACTOS';
-    position:absolute; top:50%; left:50%; transform:translate(-50%,-46%);
-    font-family:'Fraunces',serif; font-weight:700; font-size:34vw; line-height:1;
-    color:rgba(33,31,26,0.035); white-space:nowrap; pointer-events:none; z-index:0;
-  }
-  #artefactos .wrap{position:relative; z-index:1;}
-  #artefactos .tag{color:var(--text-ink-muted);}
-  #artefactos .tag .dot{background:var(--blue);}
-  #artefactos .tag b{color:var(--blue);}
-  #artefactos h2.big{
-    font-weight:700; font-size:clamp(3.2rem,9vw,9rem); line-height:.9; color:var(--text-ink);
-    margin-top:2vh;
-  }
-  #artefactos .intro{
-    font-size:clamp(1.1rem,1.7vw,1.4rem); color:var(--text-ink-muted); max-width:58ch; margin-top:3vh; line-height:1.6;
-  }
-  .index-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; margin-top:8vh; background:var(--line-ink-strong); border:1px solid var(--line-ink-strong);}
-  @media (max-width:760px){ .index-grid{grid-template-columns:1fr;} }
-  .index-card{
-    background:var(--paper); padding:5vh 3vw; text-decoration:none; color:var(--text-ink);
-    display:block; transition:background .25s;
-    position:relative;
-  }
-  .index-card:hover{background:var(--paper-dim);}
-  .index-card .idx-num{font-family:'IBM Plex Mono',monospace; font-size:.85rem; color:var(--amber); letter-spacing:.08em;}
-  .index-card h3{font-size:clamp(1.5rem,2.4vw,2.1rem); font-weight:600; margin-top:1.4vh;}
-  .index-card p{font-size:.98rem; color:var(--text-ink-muted); margin-top:1.2vh; max-width:36ch; line-height:1.5;}
-  .index-card .commit{
-    display:inline-block; margin-top:2vh; font-family:'IBM Plex Mono',monospace; font-size:.72rem;
-    letter-spacing:.06em; text-transform:uppercase; color:var(--blue); border:1px solid var(--blue); padding:5px 10px;
-  }
-  .index-card .arrow{position:absolute; top:5vh; right:3vw; font-size:1.4rem; color:var(--text-ink-muted); transition:transform .2s;}
-  .index-card:hover .arrow{transform:translateX(6px); color:var(--amber);}
+      /* ---------- ARTEFACTOS HIGHLIGHT SECTION ---------- */
+      #artefactos {
+        background: var(--paper);
+        color: var(--text-ink);
+        padding: 16vh 8vw;
+        position: relative;
+        overflow: hidden;
+      }
+      #artefactos::before {
+        content: "ARTEFACTOS";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -46%);
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: 34vw;
+        line-height: 1;
+        color: rgba(33, 31, 26, 0.035);
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 0;
+      }
+      #artefactos .wrap {
+        position: relative;
+        z-index: 1;
+      }
+      #artefactos .tag {
+        color: var(--text-ink-muted);
+      }
+      #artefactos .tag .dot {
+        background: var(--blue);
+      }
+      #artefactos .tag b {
+        color: var(--blue);
+      }
+      #artefactos h2.big {
+        font-weight: 700;
+        font-size: clamp(3.2rem, 9vw, 9rem);
+        line-height: 0.9;
+        color: var(--text-ink);
+        margin-top: 2vh;
+      }
+      #artefactos .intro {
+        font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+        color: var(--text-ink-muted);
+        max-width: 58ch;
+        margin-top: 3vh;
+        line-height: 1.6;
+      }
+      .index-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        margin-top: 8vh;
+        background: var(--line-ink-strong);
+        border: 1px solid var(--line-ink-strong);
+      }
+      @media (max-width: 760px) {
+        .index-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .index-card {
+        background: var(--paper);
+        padding: 5vh 3vw;
+        text-decoration: none;
+        color: var(--text-ink);
+        display: block;
+        transition: background 0.25s;
+        position: relative;
+      }
+      .index-card:hover {
+        background: var(--paper-dim);
+      }
+      .index-card .idx-num {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.85rem;
+        color: var(--amber);
+        letter-spacing: 0.08em;
+      }
+      .index-card h3 {
+        font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+        font-weight: 600;
+        margin-top: 1.4vh;
+      }
+      .index-card p {
+        font-size: 0.98rem;
+        color: var(--text-ink-muted);
+        margin-top: 1.2vh;
+        max-width: 36ch;
+        line-height: 1.5;
+      }
+      .index-card .commit {
+        display: inline-block;
+        margin-top: 2vh;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--blue);
+        border: 1px solid var(--blue);
+        padding: 5px 10px;
+      }
+      .index-card .arrow {
+        position: absolute;
+        top: 5vh;
+        right: 3vw;
+        font-size: 1.4rem;
+        color: var(--text-ink-muted);
+        transition: transform 0.2s;
+      }
+      .index-card:hover .arrow {
+        transform: translateX(6px);
+        color: var(--amber);
+      }
 
-  /* ---------- DETAIL ARTIFACT SECTIONS ---------- */
-  .art-detail{border-top:1px solid var(--line); scroll-margin-top:12vh;}
-  .art-head{display:flex; justify-content:space-between; align-items:flex-end; gap:4vw; flex-wrap:wrap;}
-  .art-head h2{font-weight:600; font-size:clamp(2.1rem,4.4vw,3.8rem); max-width:20ch;}
-  .art-head .num-big{font-family:'IBM Plex Mono',monospace; font-size:clamp(3rem,7vw,6rem); color:var(--ink-soft); -webkit-text-stroke:1px var(--line-strong); font-weight:500;}
-  .art-detail .lead{font-size:clamp(1.1rem,1.6vw,1.3rem); color:var(--text-muted); max-width:60ch; margin-top:3vh; line-height:1.6;}
-  .art-detail .lead strong{color:var(--amber); font-weight:600;}
+      /* ---------- DETAIL ARTIFACT SECTIONS ---------- */
+      .art-detail {
+        border-top: 1px solid var(--line);
+        scroll-margin-top: 12vh;
+      }
+      .art-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 4vw;
+        flex-wrap: wrap;
+      }
+      .art-head h2 {
+        font-weight: 600;
+        font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+        max-width: 20ch;
+      }
+      .art-head .num-big {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: clamp(3rem, 7vw, 6rem);
+        color: var(--ink-soft);
+        -webkit-text-stroke: 1px var(--line-strong);
+        font-weight: 500;
+      }
+      .art-detail .lead {
+        font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+        color: var(--text-muted);
+        max-width: 60ch;
+        margin-top: 3vh;
+        line-height: 1.6;
+      }
+      .art-detail .lead strong {
+        color: var(--amber);
+        font-weight: 600;
+      }
 
-  .cards{display:grid; gap:0; margin-top:5vh;}
-  .card{display:grid; grid-template-columns:60px 1fr; gap:20px; padding:2.6vh 0; border-top:1px solid var(--line);}
-  .card:last-child{border-bottom:1px solid var(--line);}
-  .card .num{font-family:'IBM Plex Mono',monospace; color:var(--amber); font-size:1rem; padding-top:3px;}
-  .card h4{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(1.1rem,1.6vw,1.35rem); color:var(--text-light);}
-  .card p{font-size:clamp(.95rem,1.2vw,1.1rem); color:var(--text-muted); margin-top:.6rem; max-width:60ch; line-height:1.55;}
+      .cards {
+        display: grid;
+        gap: 0;
+        margin-top: 5vh;
+      }
+      .card {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 20px;
+        padding: 2.6vh 0;
+        border-top: 1px solid var(--line);
+      }
+      .card:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .card .num {
+        font-family: "IBM Plex Mono", monospace;
+        color: var(--amber);
+        font-size: 1rem;
+        padding-top: 3px;
+      }
+      .card h4 {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+        color: var(--text-light);
+      }
+      .card p {
+        font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+        color: var(--text-muted);
+        margin-top: 0.6rem;
+        max-width: 60ch;
+        line-height: 1.55;
+      }
 
-  .balance{display:grid; grid-template-columns:1fr 1fr; gap:3vw; margin-top:5vh;}
-  @media (max-width:760px){ .balance{grid-template-columns:1fr;} }
-  .balance-col h3{
-    font-family:'IBM Plex Mono',monospace; font-size:.85rem; letter-spacing:.1em; text-transform:uppercase;
-    margin-bottom:2vh; display:flex; align-items:center; gap:10px;
-  }
-  .balance-col.favor h3{color:var(--blue);}
-  .balance-col.contra h3{color:var(--amber);}
-  .balance-col h3::before{content:''; width:9px; height:9px; border-radius:50%; background:currentColor;}
-  .balance-col ul{list-style:none;}
-  .balance-col li{font-size:.98rem; line-height:1.55; color:var(--text-light); padding:1.4vh 0; border-top:1px solid var(--line);}
-  .balance-col.favor li{border-top-color:var(--blue-soft);}
-  .balance-col.contra li{border-top-color:var(--amber-soft);}
+      .balance {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3vw;
+        margin-top: 5vh;
+      }
+      @media (max-width: 760px) {
+        .balance {
+          grid-template-columns: 1fr;
+        }
+      }
+      .balance-col h3 {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 2vh;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .balance-col.favor h3 {
+        color: var(--blue);
+      }
+      .balance-col.contra h3 {
+        color: var(--amber);
+      }
+      .balance-col h3::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .balance-col ul {
+        list-style: none;
+      }
+      .balance-col li {
+        font-size: 0.98rem;
+        line-height: 1.55;
+        color: var(--text-light);
+        padding: 1.4vh 0;
+        border-top: 1px solid var(--line);
+      }
+      .balance-col.favor li {
+        border-top-color: var(--blue-soft);
+      }
+      .balance-col.contra li {
+        border-top-color: var(--amber-soft);
+      }
 
-  .note{margin-top:3vh; font-size:.9rem; color:var(--text-muted); border-left:2px solid var(--line-strong); padding-left:1.4vw; max-width:60ch; line-height:1.55;}
+      .note {margin-top:3vh; font-size:.9rem; color:var(--text-muted); border-left:2px solid var(--line-strong); padding-left:1.4vw; max-width:60ch; line-height:1.55;}
+      .text-content{ margin-top: 5vh; color: var(--text-light); line-height: 1.8; font-size: 1.15rem; max-width: 75ch; }
+      .text-content h3 { font-family: 'Fraunces', serif; font-size: 2rem; margin-top: 6vh; margin-bottom: 2.5vh; font-weight: 600; color: var(--amber); }
+      .text-content h4 { font-family: 'Inter', sans-serif; font-size: 1.4rem; margin-top: 4.5vh; margin-bottom: 1.5vh; font-weight: 600; color: var(--text-light); border-bottom: 1px solid var(--line); padding-bottom: 1vh;}
+      .text-content p { margin-bottom: 2.5vh; }
+      .text-content ul { margin-left: 2.5vw; margin-bottom: 3vh; }
+      .text-content li { margin-bottom: 1.5vh; }
+      .text-content strong { color: var(--amber); font-weight: 600; }
 
-  /* ---------- SYNTH TABLE ---------- */
-  table.synth{width:100%; border-collapse:collapse; margin-top:5vh;}
-  table.synth th{font-family:'IBM Plex Mono',monospace; font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); text-align:left; padding:1.4vh 1.2vw; border-bottom:1px solid var(--line-strong);}
-  table.synth td{padding:2vh 1.2vw; border-bottom:1px solid var(--line); font-size:1rem; color:var(--text-light); vertical-align:top;}
-  table.synth td.artname{font-family:'Fraunces',serif; font-weight:600; color:var(--amber);}
-  .synth-wrap{overflow-x:auto;}
+      /* ---------- SYNTH TABLE ---------- */
+      table.synth {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 5vh;
+      }
+      table.synth th {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-align: left;
+        padding: 1.4vh 1.2vw;
+        border-bottom: 1px solid var(--line-strong);
+      }
+      table.synth td {
+        padding: 2vh 1.2vw;
+        border-bottom: 1px solid var(--line);
+        font-size: 1rem;
+        color: var(--text-light);
+        vertical-align: top;
+      }
+      table.synth td.artname {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        color: var(--amber);
+      }
+      .synth-wrap {
+        overflow-x: auto;
+      }
 
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--ink-soft); border-top:1px solid var(--line); padding:10vh 8vw 6vh;}
-  footer h2{font-size:clamp(1.8rem,3.4vw,2.6rem); font-weight:600; max-width:20ch;}
-  .refs{margin-top:5vh; columns:3; column-gap:3vw;}
-  @media (max-width:900px){ .refs{columns:2;} }
-  @media (max-width:600px){ .refs{columns:1;} }
-  .refs li{list-style:none; font-family:'IBM Plex Mono',monospace; font-size:.8rem; color:var(--text-muted); line-height:1.9; break-inside:avoid;}
-  .refs li b{color:var(--text-light); font-family:'Inter',sans-serif; display:block; font-size:.86rem;}
-  .foot-bottom{margin-top:8vh; display:flex; justify-content:space-between; flex-wrap:wrap; gap:2vh; font-family:'IBM Plex Mono',monospace; font-size:.75rem; color:var(--text-muted); border-top:1px solid var(--line); padding-top:3vh;}
+      /* ---------- FOOTER ---------- */
+      footer {
+        background: var(--ink-soft);
+        border-top: 1px solid var(--line);
+        padding: 10vh 8vw 6vh;
+      }
+      footer h2 {
+        font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+        font-weight: 600;
+        max-width: 20ch;
+      }
+      .refs {
+        margin-top: 5vh;
+        columns: 3;
+        column-gap: 3vw;
+      }
+      @media (max-width: 900px) {
+        .refs {
+          columns: 2;
+        }
+      }
+      @media (max-width: 600px) {
+        .refs {
+          columns: 1;
+        }
+      }
+      .refs li {
+        list-style: none;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        line-height: 1.9;
+        break-inside: avoid;
+      }
+      .refs li b {
+        color: var(--text-light);
+        font-family: "Inter", sans-serif;
+        display: block;
+        font-size: 0.86rem;
+      }
+      .foot-bottom {
+        margin-top: 8vh;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2vh;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--line);
+        padding-top: 3vh;
+      }
 
-  ::selection{background:var(--amber); color:var(--ink);}
+      ::selection {
+        background: var(--amber);
+        color: var(--ink);
+      }
 
-  .to-top{position:fixed; bottom:3vh; right:3vw; width:44px; height:44px; border-radius:50%; border:1px solid var(--line-strong); background:rgba(27,29,33,.8); color:var(--text-light); display:flex; align-items:center; justify-content:center; text-decoration:none; z-index:90; opacity:0; pointer-events:none; transition:opacity .3s;}
-  .to-top.show{opacity:1; pointer-events:auto;}
-</style>
-</head>
-<body>
+      .to-top {
+        position: fixed;
+        bottom: 3vh;
+        right: 3vw;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid var(--line-strong);
+        background: rgba(27, 29, 33, 0.8);
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        z-index: 90;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+      .to-top.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="brand">Scrum <b>·</b> Artefactos</div>
+      <ul>
+        <li><a href="#contexto">Contexto</a></li>
+        <li><a href="#artefactos">Artefactos</a></li>
+        <li><a href="#pb">Product Backlog</a></li>
+        <li><a href="#sb">Sprint Backlog</a></li>
+        <li><a href="#incremento">Incremento</a></li>
+        <li><a href="#dod">DoD</a></li>
+        <li><a href="#sintesis">Síntesis</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ul>
+    </nav>
 
-<nav>
-  <div class="brand">Scrum <b>·</b> Artefactos</div>
-  <ul>
-    <li><a href="#contexto">Contexto</a></li>
-    <li><a href="#artefactos">Artefactos</a></li>
-    <li><a href="#pb">Product Backlog</a></li>
-    <li><a href="#sb">Sprint Backlog</a></li>
-    <li><a href="#incremento">Incremento</a></li>
-    <li><a href="#dod">DoD</a></li>
-    <li><a href="#sintesis">Síntesis</a></li>
-    <li><a href="#fuentes">Fuentes</a></li>
-  </ul>
-</nav>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="tag reveal">
+          <span class="dot"></span>Exposición conceptual &nbsp;·&nbsp;
+          <b>Tema 03 / Artefactos</b>
+        </div>
+        <h1 class="reveal">Artefactos de Scrum</h1>
+        <p class="sub reveal">Los objetos vivos que hacen visible el trabajo</p>
+        <p class="lead reveal">
+          Un recorrido conceptual y verificado por el Product Backlog, el Sprint
+          Backlog, el Incremento y la Definition of Done — con fuentes
+          oficiales, subtemas ampliados y un balance a favor y en contra de cada
+          uno.
+        </p>
+        <div class="meta-row reveal">
+          <div class="meta-item">
+            <div class="k">Equipo</div>
+            <div class="v">5 integrantes</div>
+          </div>
+          <div class="meta-item">
+            <div class="k">Tema asignado</div>
+            <div class="v">Artefactos de Scrum</div>
+          </div>
+          <div class="meta-item">
+            <div class="k">Fuente base</div>
+            <div class="v">Scrum Guide 2020</div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue">
+        <div class="line"></div>
+        Desplázate
+      </div>
+    </section>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>Exposición conceptual &nbsp;·&nbsp; <b>Tema 03 / Artefactos</b></div>
-    <h1 class="reveal">Artefactos de Scrum</h1>
-    <p class="sub reveal">Los objetos vivos que hacen visible el trabajo</p>
-    <p class="lead reveal">Un recorrido conceptual y verificado por el Product Backlog, el Sprint Backlog, el Incremento y la Definition of Done — con fuentes oficiales, subtemas ampliados y un balance a favor y en contra de cada uno.</p>
-    <div class="meta-row reveal">
-      <div class="meta-item"><div class="k">Equipo</div><div class="v">5 integrantes</div></div>
-      <div class="meta-item"><div class="k">Tema asignado</div><div class="v">Artefactos de Scrum</div></div>
-      <div class="meta-item"><div class="k">Fuente base</div><div class="v">Scrum Guide 2020</div></div>
+    <!-- CONTEXTO -->
+    <section class="context" id="contexto">
+      <div class="wrap">
+        <div class="tag reveal">
+          <span class="dot"></span>Ficha 00 <b>·</b> Contexto
+        </div>
+        <h2
+          class="reveal"
+          style="
+            font-size: clamp(2rem, 4.2vw, 3.6rem);
+            font-weight: 600;
+            margin-top: 2vh;
+            max-width: 22ch;
+          "
+        >
+          ¿Qué es Scrum, exactamente?
+        </h2>
+        <blockquote class="reveal">
+          "Un marco de trabajo ligero que ayuda a personas, equipos y
+          organizaciones a generar valor a través de soluciones adaptativas para
+          problemas complejos."
+          <cite>— Scrum Guide 2020, Ken Schwaber &amp; Jeff Sutherland</cite>
+        </blockquote>
+        <div class="plate-row reveal">
+          <div class="plate">
+            <div class="plate-label">No es</div>
+            <div class="plate-value">Una metodología cerrada</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Sí es</div>
+            <div class="plate-value">Deliberadamente incompleto</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Los artefactos son</div>
+            <div class="plate-value">Sus piezas tangibles</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTEFACTOS — SECCIÓN DESTACADA -->
+    <section id="artefactos">
+      <div class="wrap">
+        <div class="tag reveal">
+          <span class="dot"></span>Índice del catálogo
+        </div>
+        <h2 class="big reveal">Artefactos</h2>
+        <p class="intro reveal">
+          Cuatro fichas, un mismo objetivo: transparencia. Cada artefacto
+          responde una pregunta distinta y lleva su propio compromiso — la pieza
+          que evita que quede como un documento muerto.
+        </p>
+
+        <div class="index-grid reveal">
+          <a class="index-card" href="#pb">
+            <span class="idx-num">ART.01</span>
+            <h3>Product Backlog</h3>
+            <p>
+              El qué y el por qué. Lista única, ordenada y emergente de todo lo
+              necesario para el producto.
+            </p>
+            <span class="commit">Compromiso: Product Goal</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="index-card" href="#sb">
+            <span class="idx-num">ART.02</span>
+            <h3>Sprint Backlog</h3>
+            <p>
+              El cómo y el cuándo. El plan del equipo para el sprint actual,
+              vivo y actualizado a diario.
+            </p>
+            <span class="commit">Compromiso: Sprint Goal</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="index-card" href="#incremento">
+            <span class="idx-num">ART.03</span>
+            <h3>Incremento</h3>
+            <p>
+              El resultado tangible: la suma de todo lo completado, integrado y
+              verificado con lo anterior.
+            </p>
+            <span class="commit">Estándar: Definition of Done</span>
+            <span class="arrow">→</span>
+          </a>
+          <a class="index-card" href="#dod">
+            <span class="idx-num">ART.04</span>
+            <h3>Definition of Done</h3>
+            <p>
+              El estándar de calidad. El compromiso que valida que el Incremento
+              está realmente terminado.
+            </p>
+            <span class="commit">Compromiso del Incremento</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT BACKLOG -->
+    <section class="art-detail" id="pb">
+      <div class="wrap">
+        <div class="tag reveal">
+          <span class="dot"></span>ART.01 <b>·</b> Product Backlog
+        </div>
+        <div class="art-head reveal">
+          <h2>La lista de necesidades del producto</h2>
+          <div class="num-big">01</div>
+        </div>
+        <p class="lead reveal">
+          Lista <strong>única, ordenada y emergente</strong> de todo lo que se
+          sabe que es necesario para mejorar el producto. Es la única fuente de
+          requisitos para cualquier cambio a realizar.
+        </p>
+
+        <div class="plate-row reveal">
+          <div class="plate">
+            <div class="plate-label">Responsable</div>
+            <div class="plate-value">Product Owner</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Compromiso</div>
+            <div class="plate-value">Product Goal</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Naturaleza</div>
+            <div class="plate-value">Nunca está completo</div>
+          </div>
+        </div>
+
+        <div class="text-content reveal">
+      <h3>Profundizando en el Product Backlog</h3>
+      <p>El Product Backlog es el corazón estratégico de cualquier iniciativa Scrum. No se trata simplemente de una lista de tareas (to-do list) o un repositorio estático de requerimientos técnicos; es una entidad viva, dinámica y en constante evolución que refleja la visión y las necesidades cambiantes del mercado, los clientes y el negocio. Representa todo aquello que podría llegar a ser el producto, estructurado de manera que maximice el retorno de inversión (ROI) del esfuerzo del equipo.</p>
+      
+      <h4>El Principio de "Única Fuente de Verdad"</h4>
+      <p>En el desarrollo tradicional o metodologías en cascada, es común encontrar múltiples documentos de requerimientos, correos electrónicos con peticiones de clientes y hojas de cálculo esparcidas por diferentes departamentos. Scrum soluciona este caos estableciendo una regla de oro: si una funcionalidad, mejora, corrección de errores (bug) o requisito técnico no está explícitamente plasmado en el Product Backlog, entonces simplemente no existe y no se trabajará en él. Esto centraliza la toma de decisiones y proporciona a toda la organización una visión cristalina de hacia dónde se dirige el desarrollo.</p>
+      
+      <h4>El Compromiso: Product Goal</h4>
+      <p>Introducido formalmente en la actualización de la Guía Scrum de 2020 para combatir la falta de visión a largo plazo, el Product Goal (Objetivo del Producto) actúa como el faro para el Scrum Team. Describe el estado futuro deseado del producto y sirve como el objetivo contra el cual se planifica y se evalúa cada ítem del Product Backlog. Mientras que el Sprint Goal da foco a corto plazo (semanas), el Product Goal provee el contexto mayor (meses o trimestres). Un equipo Scrum debe enfocarse en un solo Product Goal a la vez; hasta que no se cumpla o se descarte conscientemente, no se define el siguiente.</p>
+
+      <h4>Gestión y Ordenamiento</h4>
+      <p>La responsabilidad absoluta del Product Backlog recae en una sola persona: el Product Owner (Dueño del Producto). Sin embargo, esto no significa que deba escribir y detallar cada ítem en aislamiento; puede delegar esta tarea de redacción a los Developers o a otras partes interesadas, pero la responsabilidad final por el ordenamiento, la claridad y el valor entregado sigue siendo intransferiblemente suya.</p>
+      <p>Es fundamental comprender que el Product Backlog está <strong>ordenado</strong>, no simplemente priorizado. La priorización clásica agrupa elementos (alta, media, baja), lo que a menudo resulta en cientos de ítems de "alta prioridad", creando cuellos de botella y ansiedad. El ordenamiento, por otro lado, obliga a tomar decisiones difíciles: siempre habrá un ítem número 1, un número 2 y un número 3. Los criterios para este ordenamiento pueden variar radicalmente: valor de negocio inmediato, mitigación de un riesgo técnico grave, dependencias lógicas, ventanas de oportunidad de mercado o incluso la necesidad de construir un prototipo para adquirir nuevo conocimiento.</p>
+
+      <h4>El Concepto del Iceberg y el Refinamiento Continuo</h4>
+      <p>Muchos agilistas comparan el Product Backlog con un iceberg. En la parte superior, visible sobre la superficie del agua, se encuentran los ítems que se trabajarán en los próximos 1 a 3 Sprints. Estos ítems son pequeños, granulares, altamente detallados y tienen estimaciones precisas. Están listos (Ready) para ser seleccionados. A medida que descendemos bajo el agua, los ítems se vuelven más grandes (épicas o temas), ambiguos y menos definidos. Detallar algo que el equipo no construirá hasta dentro de 6 meses es una forma de desperdicio (waste) en Lean, ya que el contexto seguramente cambiará.</p>
+      <p>El proceso vital de mover ítems desde el fondo hacia la superficie se conoce como <strong>Refinamiento (Refinement)</strong>. Curiosamente, no es un evento formal con una caja de tiempo (timebox) estipulada por la Guía Scrum, sino una actividad continua y colaborativa donde el Product Owner y los Developers añaden detalle, criterios de aceptación, estimaciones y orden a los elementos. Desglosan requerimientos gigantes en porciones manejables que puedan ser completadas con seguridad dentro de un solo Sprint.</p>
+
+      <h4>Antipatrones Comunes (Lo que hay que evitar)</h4>
+      <ul>
+        <li><strong>El Agujero Negro:</strong> El Product Backlog se convierte en un basurero donde todas las ideas de los stakeholders entran pero ninguna sale, acumulando miles de ítems que nunca se desarrollarán, generando falsas expectativas y parálisis por análisis.</li>
+        <li><strong>Falta de Visibilidad:</strong> El backlog está escondido en herramientas complejas a las que solo el área de TI tiene acceso, destruyendo el pilar fundamental de la transparencia que sostiene a Scrum.</li>
+        <li><strong>Subestimar el Refinamiento:</strong> Llegar a la reunión de Sprint Planning con ítems vagos e indefinidos. Esto resulta en sesiones de planificación extenuantes, compromisos poco realistas y altas tasas de fracaso en el Sprint.</li>
+      </ul>
     </div>
-  </div>
-  <div class="scroll-cue"><div class="line"></div>Desplázate</div>
-</section>
 
-<!-- CONTEXTO -->
-<section class="context" id="contexto">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>Ficha 00 <b>·</b> Contexto</div>
-    <h2 class="reveal" style="font-size:clamp(2rem,4.2vw,3.6rem); font-weight:600; margin-top:2vh; max-width:22ch;">¿Qué es Scrum, exactamente?</h2>
-    <blockquote class="reveal">
-      "Un marco de trabajo ligero que ayuda a personas, equipos y organizaciones a generar valor a través de soluciones adaptativas para problemas complejos."
-      <cite>— Scrum Guide 2020, Ken Schwaber &amp; Jeff Sutherland</cite>
-    </blockquote>
-    <div class="plate-row reveal">
-      <div class="plate"><div class="plate-label">No es</div><div class="plate-value">Una metodología cerrada</div></div>
-      <div class="plate"><div class="plate-label">Sí es</div><div class="plate-value">Deliberadamente incompleto</div></div>
-      <div class="plate"><div class="plate-label">Los artefactos son</div><div class="plate-value">Sus piezas tangibles</div></div>
-    </div>
-  </div>
-</section>
+        <div class="cards reveal">
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Ordenado, no solo priorizado</h4>
+              <p>
+                El orden exige un ranking estricto (1, 2, 3...) basado en valor y riesgo, evitando el síndrome corporativo donde "todo es prioridad urgente".
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Atributos DEEP (Práctica recomendada)</h4>
+              <p>
+                Detallado apropiadamente, Estimado, Emergente (dinámico) y Priorizado (ordenado). Un acrónimo vital en la industria propuesto por el experto Roman Pichler.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Solo existe lo que está escrito</h4>
+              <p>
+                Cualquier tarea, por más pequeña que sea o por más importante que sea el directivo que la pida, debe estar reflejada en el Product Backlog para que el equipo invierta su tiempo.
+              </p>
+            </div>
+          </div>
+        </div>
 
-<!-- ARTEFACTOS — SECCIÓN DESTACADA -->
-<section id="artefactos">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>Índice del catálogo</div>
-    <h2 class="big reveal">Artefactos</h2>
-    <p class="intro reveal">Cuatro fichas, un mismo objetivo: transparencia. Cada artefacto responde una pregunta distinta y lleva su propio compromiso — la pieza que evita que quede como un documento muerto.</p>
+        <div class="balance reveal">
+          <div class="balance-col favor">
+            <h3>A favor</h3>
+            <ul>
+              <li>Fomenta la alineación organizacional alrededor de un único repositorio de verdad visible para todos.</li>
+              <li>Permite adaptarse ágilmente a cambios abruptos del mercado sin necesidad de rehacer planes extensos y burocráticos.</li>
+              <li>Maximiza el valor económico entregado, al obligar al sistema a trabajar siempre en el ítem de mayor impacto.</li>
+            </ul>
+          </div>
+          <div class="balance-col contra">
+            <h3>En contra</h3>
+            <ul>
+              <li>
+                Requiere de un Product Owner con autoridad real, visión estratégica comercial y dedicación constante; un PO ausente paraliza al equipo.
+              </li>
+              <li>
+                Si no se limpia, descarta y refina activamente, se convierte en un listado abrumador e inmanejable que desmotiva a los Developers.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="index-grid reveal">
-      <a class="index-card" href="#pb">
-        <span class="idx-num">ART.01</span>
-        <h3>Product Backlog</h3>
-        <p>El qué y el por qué. Lista única, ordenada y emergente de todo lo necesario para el producto.</p>
-        <span class="commit">Compromiso: Product Goal</span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="index-card" href="#sb">
-        <span class="idx-num">ART.02</span>
-        <h3>Sprint Backlog</h3>
-        <p>El cómo y el cuándo. El plan del equipo para el sprint actual, vivo y actualizado a diario.</p>
-        <span class="commit">Compromiso: Sprint Goal</span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="index-card" href="#incremento">
-        <span class="idx-num">ART.03</span>
-        <h3>Incremento</h3>
-        <p>El resultado tangible: la suma de todo lo completado, integrado y verificado con lo anterior.</p>
-        <span class="commit">Estándar: Definition of Done</span>
-        <span class="arrow">→</span>
-      </a>
-      <a class="index-card" href="#dod">
-        <span class="idx-num">ART.04</span>
-        <h3>Definition of Done</h3>
-        <p>El estándar de calidad. El compromiso que valida que el Incremento está realmente terminado.</p>
-        <span class="commit">Compromiso del Incremento</span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- SPRINT BACKLOG -->
+    <section class="art-detail" id="sb">
+      <div class="wrap">
+        <div class="tag reveal">
+          <span class="dot"></span>ART.02 <b>·</b> Sprint Backlog
+        </div>
+        <div class="art-head reveal">
+          <h2>El plan de acción del equipo</h2>
+          <div class="num-big">02</div>
+        </div>
+        <p class="lead reveal">
+          Compuesto por el <strong>Sprint Goal</strong> (por qué), los ítems del
+          Product Backlog seleccionados para el sprint (qué) y un plan
+          accionable para entregarlos (cómo).
+        </p>
 
-<!-- PRODUCT BACKLOG -->
-<section class="art-detail" id="pb">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>ART.01 <b>·</b> Product Backlog</div>
-    <div class="art-head reveal">
-      <h2>La lista de necesidades del producto</h2>
-      <div class="num-big">01</div>
-    </div>
-    <p class="lead reveal">Lista <strong>única, ordenada y emergente</strong> de todo lo que se sabe que es necesario para mejorar el producto. Es la única fuente de requisitos para cualquier cambio a realizar.</p>
+        <div class="plate-row reveal">
+          <div class="plate">
+            <div class="plate-label">Lo crea</div>
+            <div class="plate-value">Los Developers</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Cuándo</div>
+            <div class="plate-value">Sprint Planning</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Compromiso</div>
+            <div class="plate-value">Sprint Goal</div>
+          </div>
+        </div>
 
-    <div class="plate-row reveal">
-      <div class="plate"><div class="plate-label">Responsable</div><div class="plate-value">Product Owner</div></div>
-      <div class="plate"><div class="plate-label">Compromiso</div><div class="plate-value">Product Goal</div></div>
-      <div class="plate"><div class="plate-label">Naturaleza</div><div class="plate-value">Nunca está completo</div></div>
-    </div>
+        <div class="text-content reveal">
+      <h3>El corazón táctico del Sprint</h3>
+      <p>Mientras que el Product Backlog representa el panorama general y la visión a largo plazo, el Sprint Backlog es el microscopio. Es un artefacto táctico, enfocado exclusivamente en el presente y diseñado para guiar al equipo durante un ciclo de trabajo específico e inamovible (el Sprint, usualmente de 2 a 4 semanas). Representa el plan altamente visible y en tiempo real de los Developers para alcanzar su meta más próxima.</p>
 
-    <div class="cards reveal">
-      <div class="card"><div class="num">→</div><div><h4>Ordenado, no solo priorizado</h4><p>Lo más valioso, urgente o riesgoso queda arriba: es lo primero que se trabaja.</p></div></div>
-      <div class="card"><div class="num">→</div><div><h4>Detalle progresivo, como un iceberg</h4><p>Los ítems del tope están muy detallados; los del fondo son apenas una idea — detallar algo que puede cambiar es desperdicio de tiempo.</p></div></div>
-      <div class="card"><div class="num">→</div><div><h4>Refinamiento (Product Backlog Refinement)</h4><p>Actividad <strong>continua</strong>, no un evento formal con caja de tiempo. La Guía no dice cómo hacerla: es un vacío intencional. En la industria se usa el modelo <strong>DEEP</strong> (Detallado, Estimado, Emergente, Priorizado) de Roman Pichler — no es un término oficial de la Guía.</p></div></div>
-    </div>
+      <h4>Los Tres Elementos del Sprint Backlog</h4>
+      <p>El Sprint Backlog no es una simple lista pasiva de tareas a tachar; es un ecosistema que consta de tres partes interconectadas que responden a las preguntas fundamentales de cualquier planificación de ingeniería o desarrollo:</p>
+      <ul>
+        <li><strong>El Por Qué (Sprint Goal):</strong> Es el objetivo unificador que da sentido al trabajo del Sprint. Explica a los stakeholders por qué el esfuerzo de estas semanas es valioso y brinda cohesión al equipo.</li>
+        <li><strong>El Qué (Ítems seleccionados):</strong> El conjunto de elementos del Product Backlog (historias de usuario, mejoras de infraestructura, corrección de bugs técnicos) que los Developers consideran que pueden completar en este ciclo para lograr el objetivo.</li>
+        <li><strong>El Cómo (El plan de acción):</strong> La descomposición técnica de los ítems seleccionados en tareas específicas, pruebas, integraciones, asignaciones tácticas y la estrategia de ejecución del día a día.</li>
+      </ul>
 
-    <div class="balance reveal">
-      <div class="balance-col favor"><h3>A favor</h3><ul>
-        <li>Fuente única de verdad: evita requisitos duplicados o contradictorios.</li>
-        <li>Flexible ante nueva información de mercado, sin reprocesos formales.</li>
-      </ul></div>
-      <div class="balance-col contra"><h3>En contra</h3><ul>
-        <li>Puede crecer sin límite si nadie descarta ítems activamente.</li>
-        <li>Depende de la disciplina del Product Owner; sin ella, pierde su función de guía.</li>
-      </ul></div>
-    </div>
-  </div>
-</section>
+      <h4>El Compromiso: Sprint Goal</h4>
+      <p>El Sprint Goal es la piedra angular del Sprint Backlog y su existencia es obligatoria. Proporciona flexibilidad y empoderamiento a los Developers. A lo largo del Sprint, es habitual que el equipo descubra que el trabajo necesario es distinto, más complejo o extenso de lo que previó en la planificación. Cuando esto ocurre, los Developers colaboran con el Product Owner para renegociar el alcance interno (los ítems del "Qué"), pero bajo una premisa intocable: <strong>el Sprint Goal nunca se compromete ni se altera</strong> durante el Sprint. Esto asegura que, independientemente de los desafíos técnicos descubiertos, el equipo aún se enfoca en entregar el valor de negocio principal acordado, fomentando la innovación en el cómo llegar a la meta.</p>
 
-<!-- SPRINT BACKLOG -->
-<section class="art-detail" id="sb">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>ART.02 <b>·</b> Sprint Backlog</div>
-    <div class="art-head reveal">
-      <h2>El plan de acción del equipo</h2>
-      <div class="num-big">02</div>
-    </div>
-    <p class="lead reveal">Compuesto por el <strong>Sprint Goal</strong> (por qué), los ítems del Product Backlog seleccionados para el sprint (qué) y un plan accionable para entregarlos (cómo).</p>
+      <h4>Un Artefacto Vivo y Propiedad Exclusiva de los Developers</h4>
+      <p>El Sprint Backlog es creado enteramente por y para los Developers. Son ellos los únicos capacitados para decidir cuántos ítems seleccionar del Product Backlog (nadie, ni el CEO ni el Product Owner, puede empujarles más trabajo del que estiman posible lograr) y cómo ejecutarán el plan técnico. Además, es un artefacto vivo que emerge dinámicamente durante el Sprint. A medida que el equipo adquiere más conocimiento sobre la tecnología, la arquitectura o el dominio del negocio trabajando con el código, añaden, modifican o eliminan tareas de su plan táctico de manera fluida.</p>
+      <p>El escenario principal para inspeccionar el progreso de este artefacto es la <strong>Daily Scrum</strong> (Scrum Diario). En este evento enfocado de 15 minutos, los Developers no dan un reporte de estado al jefe, sino que evalúan su avance colectivo hacia el Sprint Goal y adaptan su plan táctico conjunto (el Sprint Backlog) para las siguientes 24 horas.</p>
 
-    <div class="plate-row reveal">
-      <div class="plate"><div class="plate-label">Lo crea</div><div class="plate-value">Los Developers</div></div>
-      <div class="plate"><div class="plate-label">Cuándo</div><div class="plate-value">Sprint Planning</div></div>
-      <div class="plate"><div class="plate-label">Compromiso</div><div class="plate-value">Sprint Goal</div></div>
-    </div>
-
-    <div class="cards reveal">
-      <div class="card"><div class="num">→</div><div><h4>Alta visibilidad, tiempo real</h4><p>Se actualiza durante todo el sprint conforme se aprende más, no solo en la Daily Scrum.</p></div></div>
-      <div class="card"><div class="num">→</div><div><h4>Flexible en el cómo</h4><p>El plan interno puede cambiar durante el sprint, siempre que no comprometa el Sprint Goal.</p></div></div>
-      <div class="card"><div class="num">→</div><div><h4>Suficientemente detallado</h4><p>Para poder inspeccionar el avance día a día en la Daily Scrum.</p></div></div>
+      <h4>Antipatrones Comunes (Lo que hay que evitar)</h4>
+      <ul>
+        <li><strong>El Sprint Goal genérico o inexistente:</strong> Objetivos como "Completar todas las 15 tareas asignadas" o "Avanzar en el backend" no brindan contexto de negocio ni cohesión; convierten al equipo en una fábrica de funcionalidades desconectadas (feature factory).</li>
+        <li><strong>Microgestión Externa:</strong> Un Scrum Master, Project Manager o Tech Lead que asigne las tareas individuales a los Developers en un tablero de Jira. La verdadera auto-gestión requiere que los Developers "jalen" (pull) el trabajo voluntariamente y decidan el cómo.</li>
+        <li><strong>Un Plan Estático y Rígido:</strong> Creer que el Sprint Backlog no puede cambiar después del primer día. Si el miércoles se descubre una nueva tarea de base de datos necesaria para el Sprint Goal, debe añadirse y transparentarse inmediatamente.</li>
+      </ul>
     </div>
 
-    <div class="balance reveal">
-      <div class="balance-col favor"><h3>A favor</h3><ul>
-        <li>Da foco y reduce ambigüedad de responsabilidades: un problema que, según el informe State of AI at Work 2025 de Asana, afecta al 84% de los trabajadores.</li>
-        <li>Mejora la previsibilidad de compromisos con el tiempo.</li>
-      </ul></div>
-      <div class="balance-col contra"><h3>En contra</h3><ul>
-        <li>El timeboxing rígido puede generar carreras de último momento o tareas "infladas" para llenar el tiempo.</li>
-        <li>Estimar con precisión es difícil por naturaleza: complejidad oculta y herramientas cambiantes.</li>
-      </ul></div>
+        <div class="cards reveal">
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Inspección Diaria</h4>
+              <p>
+                El Sprint Backlog debe tener un nivel de granularidad suficiente para que los cambios en el progreso se puedan entender y debatir cada 24 horas en la Daily Scrum.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Flexibilidad del Alcance</h4>
+              <p>
+                El "Qué" (ítems previstos) y el "Cómo" (tareas técnicas) pueden cambiar y renegociarse de mutuo acuerdo; el "Por Qué" (Sprint Goal) permanece intacto hasta el último día.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Auto-organización</h4>
+              <p>
+                Nadie le dice a los Developers cómo convertir los elementos abstractos del Product Backlog en Incrementos de valor técnico reales. Es su prerrogativa y responsabilidad exclusiva.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="balance reveal">
+          <div class="balance-col favor">
+            <h3>A favor</h3>
+            <ul>
+              <li>
+                Proporciona un enfoque implacable, dando al equipo una herramienta para protegerse y decir "no" a las interrupciones externas durante el Sprint.
+              </li>
+              <li>Fomenta la colaboración genuina y la responsabilidad compartida (accountability colectiva) sobre el resultado, eliminando los silos de trabajo individual.</li>
+              <li>Visibiliza rápidamente cuellos de botella, problemas de dependencias y estancamientos a través de su actualización constante.</li>
+            </ul>
+          </div>
+          <div class="balance-col contra">
+            <h3>En contra</h3>
+            <ul>
+              <li>
+                Puede causar estrés y desmotivación si el equipo tiene la mala costumbre de sobreestimar sistemáticamente su capacidad y fallar repetidamente el objetivo (over-committing).
+              </li>
+              <li>
+                En entornos altamente reactivos (como equipos que combinan desarrollo con soporte técnico nivel 3), puede ser casi imposible sostener y aislar un plan por semanas sin romperlo por emergencias.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INCREMENTO -->
+    <section class="art-detail" id="incremento">
+      <div class="wrap">
+        <div class="tag reveal">
+          <span class="dot"></span>ART.03 <b>·</b> Incremento
+        </div>
+        <div class="art-head reveal">
+          <h2>Un escalón concreto hacia el objetivo</h2>
+          <div class="num-big">03</div>
+        </div>
+        <p class="lead reveal">
+          Suma de todo lo completado durante el sprint, integrada con el valor
+          de todos los sprints anteriores. Debe ser <strong>utilizable</strong>,
+          aunque la empresa decida no liberarlo al mercado de inmediato.
+        </p>
+
+        <div class="plate-row reveal">
+          <div class="plate">
+            <div class="plate-label">No es</div>
+            <div class="plate-value">Un producto al 80%</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Es</div>
+            <div class="plate-value">Potencialmente entregable</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Nace</div>
+            <div class="plate-value">Al cumplir la DoD</div>
+          </div>
+        </div>
+
+        <div class="text-content reveal">
+      <h3>El Valor Tangible: La materialización del esfuerzo</h3>
+      <p>El Incremento es el objetivo definitivo y la razón de ser del marco Scrum. Es el resultado medible, empírico y observable del trabajo duro y coordinado de todo el equipo durante el ciclo. No se trata de un voluminoso documento de diseño arquitectónico, ni de un conjunto de wireframes aprobados, ni siquiera de millones de líneas de código en una rama aislada de desarrollo esperando meses para ver la luz. Un Incremento es una pieza de producto funcional, sólidamente probada, completamente integrada y utilizable que aporta valor comprobable al usuario final, al cliente o al negocio.</p>
+      
+      <h4>La Naturaleza Aditiva y la Integración Obligatoria</h4>
+      <p>Un concepto crucial y a menudo malinterpretado del Incremento es que su naturaleza es estrictamente aditiva y acumulativa. Cada nuevo Incremento que un equipo construye no existe en el vacío ni en un entorno estéril; debe integrarse sin fisuras con todos los Incrementos entregados en los Sprints anteriores desde la concepción del producto. Esto significa que si en el Sprint 1 se entregó un sistema robusto de inicio de sesión, y en el Sprint 2 se desarrolla un catálogo interactivo de productos, el Incremento resultante del Sprint 2 es el catálogo operando armónicamente junto con el inicio de sesión. La prueba de fuego técnica es que el ecosistema completo siga funcionando a la perfección y no se haya roto funcionalidad pasada (una disciplina conocida en ingeniería como prevención de regresiones).</p>
+      
+      <h4>Potencialmente Entregable vs. Liberado a Producción</h4>
+      <p>Uno de los mayores puntos de confusión en la adopción ágil es la diferencia semántica entre estar "terminado" y estar "liberado" a los usuarios reales. La Guía de Scrum exige taxativamente que el Incremento sea utilizable y cumpla estrictamente con la Definition of Done, lo que le otorga el estatus de "potencialmente entregable" (Potentially Releasable). Esto significa que, desde el punto de vista puramente técnico, el código es de calidad de producción y está listo para ser desplegado pulsando un botón. Sin embargo, la decisión estratégica de negocio sobre cuándo liberar ese Incremento al mercado (Release) recae enteramente en el Product Owner. El PO, evaluando el mercado, puede decidir lanzar de inmediato o esperar algunos Sprints para acumular un bloque mayor de características para sincronizarlo con una campaña de marketing o una feria del sector.</p>
+      
+      <h4>Múltiples Incrementos en un solo Sprint</h4>
+      <p>Aunque en las implementaciones iniciales de Scrum se asume que el Incremento se consolida y presenta mágicamente al final del Sprint (específicamente en la Sprint Review), las versiones modernas de la Guía hacen especial énfasis en que un equipo maduro puede y debe crear múltiples Incrementos dentro de la misma iteración. En entornos de madurez tecnológica alta, donde se aplican prácticas de Integración Continua y Entrega Continua (CI/CD), un equipo podría estar creando, verificando y entregando Incrementos valiosos múltiples veces al día. La Sprint Review, por tanto, nunca debe considerarse una puerta de calidad final o una barrera burocrática para entregar valor; simplemente es un momento de pausa y cadencia formal para inspeccionar colectivamente todo lo logrado frente a los stakeholders.</p>
+
+      <h4>Antipatrones Comunes (Lo que hay que evitar)</h4>
+      <ul>
+        <li><strong>La Ilusión de Progreso:</strong> Mostrar a los directivos diagramas de Gantt, presentaciones de PowerPoint, pantallas estáticas o código "casi terminado" y declararlo como el Incremento de ese Sprint. El software no funcionando no cuenta como progreso en Scrum.</li>
+        <li><strong>Integración Aplazada (Scrum-fall):</strong> El equipo desarrolla frenéticamente durante 4 Sprints y deja la ardua labor de integración para un supuesto "Sprint de Integración", "Sprint de Pruebas" o "Sprint de Estabilización" posterior. Si el trabajo no está integrado, simplemente no es un Incremento.</li>
+        <li><strong>Deuda Técnica Camuflada:</strong> Producir masivamente nuevas funcionalidades visuales para complacer a los clientes a expensas de la calidad interna de la arquitectura, generando un Incremento endeble e inestable que costará millones mantener en el futuro cercano.</li>
+      </ul>
     </div>
-  </div>
-</section>
 
-<!-- INCREMENTO -->
-<section class="art-detail" id="incremento">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>ART.03 <b>·</b> Incremento</div>
-    <div class="art-head reveal">
-      <h2>Un escalón concreto hacia el objetivo</h2>
-      <div class="num-big">03</div>
+        <div class="cards reveal">
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Acumulativo y Verificado Constantemente</h4>
+              <p>
+                La integración continua es una necesidad absoluta, no un lujo. El nuevo valor de negocio se suma y multiplica al antiguo sin degradar el rendimiento previo.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Desacoplado de la Sprint Review</h4>
+              <p>
+                El Incremento puede (y si es valioso, debe) entregarse a los usuarios antes del fin del Sprint. La Review revisa la suma de ellos, no retrasa su liberación.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>La Única Medida de Progreso Real</h4>
+              <p>
+                Como postula el Manifiesto Ágil: El software funcionando (o producto final utilizable) es la medida principal de progreso. Promesas de código futuro carecen de peso.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="balance reveal">
+          <div class="balance-col favor">
+            <h3>A favor</h3>
+            <ul>
+              <li>
+                Minimiza radicalmente el riesgo de inversión corporativa (Sunk Cost). Si el proyecto pierde financiamiento o se cancela abruptamente a la mitad, la organización retiene y puede monetizar el valor de los Incrementos ya construidos.
+              </li>
+              <li>Permite la obtención de retroalimentación crítica y empírica del mercado (Feedback Loop corto), permitiendo a la empresa pivotar su estrategia o perseverar basándose en datos de uso real, no en intuiciones.</li>
+            </ul>
+          </div>
+          <div class="balance-col contra">
+            <h3>En contra</h3>
+            <ul>
+              <li>
+                Exige un altísimo grado de excelencia y madurez técnica (automatización de pruebas, flujos de CI/CD, cultura DevOps). Sin estas prácticas, la integración y prueba constante se vuelve una pesadilla insostenible de trabajo manual.
+              </li>
+              <li>
+                En industrias fuertemente reguladas (aeroespacial, dispositivos médicos FDA) o de hardware donde el costo físico de liberación o certificación es astronómico, el concepto de un Incremento "potencialmente entregable" cada dos semanas requiere adaptaciones complejas al marco de trabajo.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEFINITION OF DONE -->
+    <section class="art-detail" id="dod">
+      <div class="wrap">
+        <div class="tag reveal">
+          <span class="dot"></span>ART.04 <b>·</b> Definition of Done
+        </div>
+        <div class="art-head reveal">
+          <h2>El juez imparcial del equipo</h2>
+          <div class="num-big">04</div>
+        </div>
+        <p class="lead reveal">
+          Descripción formal del estado que debe alcanzar el Incremento para
+          cumplir la calidad requerida por el producto. Elimina la ambigüedad
+          sobre qué significa "terminado".
+        </p>
+
+        <div class="plate-row reveal">
+          <div class="plate">
+            <div class="plate-label">La crean</div>
+            <div class="plate-value">Developers + Product Owner</div>
+          </div>
+          <div class="plate">
+            <div class="plate-label">Regla dura</div>
+            <div class="plate-value">Sin DoD, no hay Sprint Review</div>
+          </div>
+        </div>
+
+        <div class="text-content reveal">
+      <h3>El Sello de Calidad, Transparencia y Confianza</h3>
+      <p>La Definition of Done (DoD) o "Definición de Terminado" no es simplemente una molesta lista de chequeo burocrática; es la garantía inquebrantable de calidad y el compromiso de transparencia del equipo frente a toda la organización. Representa el estándar universal, objetivo y acordado que debe cumplirse inexcusablemente para que cualquier ítem del Product Backlog pueda considerarse parte viva de un Incremento. Si el Incremento responde a la pregunta "¿Qué valor estamos entregando?", la Definition of Done es el filtro de rigor que responde a "¿Con qué nivel de calidad aseguramos ese entregable para que sea sólido, seguro y económicamente mantenible a futuro?".</p>
+
+      <h4>DoD vs. Criterios de Aceptación: Resolviendo la Confusión</h4>
+      <p>En la inmensa mayoría de las transiciones ágiles tempranas, es extremadamente común confundir la Definition of Done con los Criterios de Aceptación de las historias de usuario. Sin embargo, sus propósitos, dominios y escalas de aplicación son profundamente distintos:</p>
+      <ul>
+        <li><strong>Definition of Done (DoD):</strong> Es macro y aplica uniformemente a <em>absolutamente todos</em> los elementos desarrollados durante cualquier Sprint. Son reglas universales del producto o de la empresa. <em>Ejemplos:</em> Todo código nuevo debe ser revisado por un par (Peer Review), debe pasar las pruebas automatizadas de seguridad estática (SonarQube sin vulnerabilidades críticas), debe estar integrado sin conflictos en la rama principal (Main/Master), no degrada el rendimiento de la aplicación en más de 200ms, y debe acompañarse de notas técnicas de versión.</li>
+        <li><strong>Criterios de Aceptación:</strong> Son micro y específicos exclusivamente para <em>un solo ítem</em> del Product Backlog. Definen el comportamiento esperado del negocio o las reglas funcionales particulares de esa historia. <em>Ejemplos para una historia de "Módulo de Login":</em> "El usuario debe ser bloqueado automáticamente tras 3 intentos fallidos", "La interfaz debe soportar formato de correo electrónico estándar", "El mensaje de error debe mostrarse en rojo bajo el campo".</li>
+      </ul>
+
+      <h4>El Impacto de la Transparencia y la Regla Binaria</h4>
+      <p>La regla más sagrada, implacable y fundamental de Scrum respecto a la DoD es que el estado de terminación es un evento estrictamente binario: un elemento de trabajo está Terminado (Done) o simplemente no lo está. Dentro de Scrum, es un pecado capital afirmar que algo está "99% terminado", "terminado por mi parte pero falta que QA lo pruebe", "terminado salvo por la documentación" o la clásica excusa "terminado porque funciona en mi entorno local".</p>
+      <p>Si un elemento, por pequeño que sea, no cumple absolutamente con todos y cada uno de los puntos estipulados en la DoD al sonar la campana de cierre del Sprint, las consecuencias son claras: no puede incluirse bajo ningún concepto en el Incremento, no se demuestra (ni se menciona) a los stakeholders en la Sprint Review, y regresa automáticamente al Product Backlog, manteniendo así intacta la métrica de progreso real y empírico.</p>
+      <p>Esta severidad casi marcial es exactamente la piedra fundacional que construye y preserva la confianza organizativa. Cuando los Developers miran a los directivos y afirman que un incremento está "Done", el Product Owner, el área comercial y los stakeholders pueden tener la certeza absoluta, sin segundas intenciones ni preguntas de seguimiento, de que ese código no requiere retrabajo oculto, estabilización de última hora ni pruebas milagrosas para poder generar ingresos o ser utilizado en un entorno de producción real.</p>
+
+      <h4>Una Evolución Constante hacia la Excelencia Técnica</h4>
+      <p>La Definition of Done es un documento vivo; no está grabada en piedra el día 1 del proyecto para la eternidad. Cuando un nuevo equipo Scrum se forma, especialmente en ecosistemas tecnológicos precarios (legacy), su DoD inicial puede (y debe) ser modesta, pragmática y realista para evitar parálisis (ej. "El código compila sin errores críticos conocidos y fue probado manualmente por otro miembro del equipo en el entorno de desarrollo").</p>
+      <p>Sin embargo, a medida que el equipo madura, reduce su deuda técnica y adopta mejores herramientas (prácticas DevOps, suites de pruebas unitarias y de integración automatizadas, infraestructura como código, despliegue continuo), se espera y se exige que dediquen tiempo, usualmente durante los debates de la <strong>Sprint Retrospective</strong>, para inspeccionar y hacer deliberadamente más rigurosa su DoD. Por ejemplo, elevando el listón a: "Pruebas de estrés y carga superadas exitosamente, revisión de seguridad dinámica (DAST) sin alertas medias, cobertura de código (Test Coverage) superior al 85%, y despliegue automatizado sin tiempo de inactividad (Zero Downtime Deployment)".</p>
+      <p>Además, si la organización matriz, departamento de TI o PMO ya posee una DoD estandarizada corporativa (por cuestiones de cumplimiento legal o estándares ISO), todos los equipos Scrum que trabajan para ellos deben adoptarla como su umbral mínimo innegociable, conservando la libertad de agregar criterios adicionales más estrictos que sean específicos para la naturaleza de su producto concreto.</p>
+
+      <h4>Antipatrones Comunes y Formas de Sabotaje (Lo que hay que evitar)</h4>
+      <ul>
+        <li><strong>La DoD Fantasma de la Wiki:</strong> Existe un documento impecable, kilométrico y teóricamente perfecto escondido en alguna wiki corporativa muerta, pero absolutamente ningún desarrollador lo lee, lo recuerda ni lo verifica sistemáticamente antes de dar por cerrada y arrastrar una tarea a la columna "Done" del tablero ágil.</li>
+        <li><strong>Relajar la DoD al final del Sprint (El compromiso táctico):</strong> Ignorar silenciosamente reglas arduas como la actualización de la cobertura de pruebas, la redacción de documentación de APIs o las pruebas de accesibilidad en los últimos dos días del Sprint, únicamente impulsados por el pánico de aparentar ante el management que se logró cumplir con el Sprint Goal.</li>
+        <li><strong>La DoD Paralizante (El perfeccionismo estéril):</strong> Establecer criterios tan idealistas, ambiciosos y fuera de la capacidad técnica, de infraestructura o de automatización actual del equipo (ej. "Automatización total de pruebas end-to-end en el primer Sprint sin herramientas instaladas") que resulta materialmente imposible completar un solo ítem y entregar un incremento de valor temprano, asfixiando la agilidad.</li>
+      </ul>
     </div>
-    <p class="lead reveal">Suma de todo lo completado durante el sprint, integrada con el valor de todos los sprints anteriores. Debe ser <strong>utilizable</strong>, aunque la empresa decida no liberarlo al mercado de inmediato.</p>
 
-    <div class="plate-row reveal">
-      <div class="plate"><div class="plate-label">No es</div><div class="plate-value">Un producto al 80%</div></div>
-      <div class="plate"><div class="plate-label">Es</div><div class="plate-value">Potencialmente entregable</div></div>
-      <div class="plate"><div class="plate-label">Nace</div><div class="plate-value">Al cumplir la DoD</div></div>
-    </div>
+        <div class="cards reveal">
+          <div class="card">
+            <div class="num">✓</div>
+            <div>
+              <h4>Un Lenguaje Común Inequívoco</h4>
+              <p>
+                La DoD elimina las peligrosas zonas grises organizacionales; desde el desarrollador junior hasta el CEO, todos comparten exactamente la misma comprensión inmutable de lo que significa "trabajo verdaderamente terminado".
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>El Escudo Definitivo contra la Deuda Técnica</h4>
+              <p>
+                Es la primera, mejor y muchas veces la única defensa institucional de los Developers frente a la acumulación tóxica de código espagueti, soluciones parche y errores no resueltos a lo largo del tiempo de vida del producto.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="num">→</div>
+            <div>
+              <h4>Condición Contractual Inquebrantable</h4>
+              <p>
+                La calidad base definida no es sujeta de negociación comercial. Ningún requerimiento imperioso de negocio, promesa a clientes o presión extrema de fechas límite de un directivo justifica violar los estándares de calidad que la Definition of Done defiende.
+              </p>
+            </div>
+          </div>
+        </div>
 
-    <div class="cards reveal">
-      <div class="card"><div class="num">→</div><div><h4>Acumulativo y verificado</h4><p>Cada incremento se integra y verifica con los anteriores, asegurando que todos funcionen juntos — nunca como piezas sueltas.</p></div></div>
-      <div class="card"><div class="num">→</div><div><h4>Ejemplo</h4><p>Sprint 1: login funcionando. Sprint 2: + perfil de usuario. El incremento del Sprint 2 contiene ambas funcionalidades trabajando juntas.</p></div></div>
-    </div>
+        <div class="balance reveal">
+          <div class="balance-col favor">
+            <h3>A favor</h3>
+            <ul>
+              <li>
+                Establece una cultura sólida de responsabilidad profesional compartida (Craftsmanship) y orgullo genuino por la ingeniería o el trabajo bien hecho.
+              </li>
+              <li>Protege agresivamente el costo total de propiedad (Total Cost of Ownership - TCO) del producto a largo plazo al reducir exponencialmente los asfixiantes costos de mantenimiento y parches a futuro.</li>
+              <li>Permite la predictibilidad empírica: Si la calidad es siempre constante, la velocidad del equipo (Velocity) se convierte en una métrica en la que el negocio puede confiar para sus proyecciones de liberación.</li>
+            </ul>
+          </div>
+          <div class="balance-col contra">
+            <h3>En contra</h3>
+            <ul>
+              <li>
+                Garantiza generar tensión y conflicto inicial recurrente entre el negocio (que a menudo prioriza la velocidad de salida al mercado por encima de todo) y el equipo técnico (que defiende la calidad, estabilidad y longevidad exigida por la DoD).
+              </li>
+              <li>
+                El aumento necesario de su rigor requiere a menudo inversiones económicas significativas en modernización de infraestructura (Cloud), licencias de software de calidad y capacitación técnica especializada que la gerencia podría resistirse a aprobar.
+              </li>
+            </ul>
+          </div>
+        </div>
 
-    <div class="balance reveal">
-      <div class="balance-col favor"><h3>A favor</h3><ul>
-        <li>Reduce riesgo: valida piezas reales en cada ciclo, en vez de integrar todo al final.</li>
-        <li>Permite feedback real y temprano de stakeholders.</li>
-      </ul></div>
-      <div class="balance-col contra"><h3>En contra</h3><ul>
-        <li>"Entregable" no siempre significa "conviene entregarlo ya": puede presionar lanzamientos apresurados.</li>
-        <li>En la práctica, muchos equipos siguen integrando todo al final y pierden el beneficio.</li>
-      </ul></div>
-    </div>
-  </div>
-</section>
+        <p class="note reveal">
+          Nota: formalmente la Guía de Scrum no llama "artefacto" a la
+          Definition of Done — es el compromiso del Incremento. Se trata aquí
+          como cuarto tema por enfoque didáctico del curso.
+        </p>
+      </div>
+    </section>
 
-<!-- DEFINITION OF DONE -->
-<section class="art-detail" id="dod">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>ART.04 <b>·</b> Definition of Done</div>
-    <div class="art-head reveal">
-      <h2>El juez imparcial del equipo</h2>
-      <div class="num-big">04</div>
-    </div>
-    <p class="lead reveal">Descripción formal del estado que debe alcanzar el Incremento para cumplir la calidad requerida por el producto. Elimina la ambigüedad sobre qué significa "terminado".</p>
+    <!-- SÍNTESIS -->
+    <section id="sintesis">
+      <div class="wrap">
+        <div class="tag reveal"><span class="dot"></span>Síntesis</div>
+        <h2
+          class="reveal"
+          style="
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            font-weight: 600;
+            margin-top: 2vh;
+            max-width: 22ch;
+          "
+        >
+          La jerarquía completa, de un vistazo
+        </h2>
+        <div class="synth-wrap reveal">
+          <table class="synth">
+            <tr>
+              <th>Artefacto</th>
+              <th>Responde a</th>
+              <th>Gestiona</th>
+              <th>Compromiso</th>
+            </tr>
+            <tr>
+              <td class="artname">Product Backlog</td>
+              <td>Qué / por qué</td>
+              <td>Product Owner</td>
+              <td>Product Goal</td>
+            </tr>
+            <tr>
+              <td class="artname">Sprint Backlog</td>
+              <td>Cómo / cuándo</td>
+              <td>Developers</td>
+              <td>Sprint Goal</td>
+            </tr>
+            <tr>
+              <td class="artname">Incremento</td>
+              <td>Resultado</td>
+              <td>Todo el equipo</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td class="artname">Definition of Done</td>
+              <td>Estándar de calidad</td>
+              <td>Todo el equipo</td>
+              <td>Del Incremento</td>
+            </tr>
+          </table>
+        </div>
 
-    <div class="plate-row reveal">
-      <div class="plate"><div class="plate-label">La crean</div><div class="plate-value">Developers + Product Owner</div></div>
-      <div class="plate"><div class="plate-label">Regla dura</div><div class="plate-value">Sin DoD, no hay Sprint Review</div></div>
-    </div>
+        <h3
+          class="reveal"
+          style="
+            font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+            font-weight: 600;
+            margin-top: 10vh;
+          "
+        >
+          ¿Son siempre la mejor opción?
+        </h3>
+        <div class="balance reveal">
+          <div class="balance-col favor">
+            <h3>A favor del marco</h3>
+            <ul>
+              <li>
+                Transparencia → inspección → adaptación: reduce riesgo frente a
+                un alcance cerrado desde el inicio.
+              </li>
+              <li>
+                Es el framework ágil más adoptado; hoy se usa también fuera del
+                software.
+              </li>
+            </ul>
+          </div>
+          <div class="balance-col contra">
+            <h3>Límites documentados</h3>
+            <ul>
+              <li>
+                Sobrecarga de eventos en equipos pequeños o de ritmo muy rápido.
+              </li>
+              <li>
+                Rigidez si se aplica de forma dogmática ante cambios de
+                prioridad.
+              </li>
+              <li>
+                Escala mal más allá de 5–9 personas sin frameworks adicionales
+                (LeSS, Scrum@Scale, SAFe).
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="cards reveal">
-      <div class="card"><div class="num">✓</div><div><h4>Criterios de ejemplo</h4><p>Código revisado por pares · Pruebas unitarias al 100% · Integrado con la rama principal · Cumple estándares de accesibilidad · Documentado para el usuario final.</p></div></div>
-      <div class="card"><div class="num">→</div><div><h4>Evolutiva</h4><p>Se vuelve más estricta con la madurez del equipo: de "pasa pruebas unitarias" a "tiene integración, documentación y accesibilidad".</p></div></div>
-    </div>
+    <!-- FOOTER / FUENTES -->
+    <footer id="fuentes">
+      <div class="wrap">
+        <div class="tag reveal">
+          <span class="dot"></span>Cierre <b>·</b> Fuentes verificadas
+        </div>
+        <h2 class="reveal">Gracias. ¿Preguntas?</h2>
+        <ul class="refs reveal">
+          <li><b>Scrum Guide 2020 (oficial)</b>scrumguides.org</li>
+          <li>
+            <b>Scrum.org</b>Sprint Backlog, Definition of Done, Refinement
+          </li>
+          <li><b>Scrum Alliance</b>Product Increment, Refinement</li>
+          <li><b>Age-of-Product.com</b>Scrum Guide 2020: Beyond Software</li>
+          <li><b>Agile Academy</b>Scrum Guide 2020 changes</li>
+          <li><b>Wrike</b>3 Artifacts of Scrum</li>
+          <li>
+            <b>Asana</b>Qué es el sprint backlog (State of AI at Work 2025)
+          </li>
+          <li><b>Lucid</b>Guía de backlog de producto</li>
+          <li><b>Medium</b>A Good Faith Critique of Scrum</li>
+          <li><b>Aaron Gray</b>A Criticism of Scrum</li>
+          <li><b>Teamhood</b>Scrum advantages and disadvantages 2026</li>
+          <li>
+            <b>arXiv</b>Agile Software Development Methods: Review and Analysis
+          </li>
+        </ul>
+        <div class="foot-bottom">
+          <span>Exposición conceptual de Scrum</span>
+          <span>Equipo de Artefactos · 5 integrantes</span>
+        </div>
+      </div>
+    </footer>
 
-    <div class="balance reveal">
-      <div class="balance-col favor"><h3>A favor</h3><ul>
-        <li>Zanja discusiones subjetivas sobre qué está realmente "listo".</li>
-        <li>Da consistencia de calidad entre incrementos hechos por personas distintas.</li>
-      </ul></div>
-      <div class="balance-col contra"><h3>En contra</h3><ul>
-        <li>Si es muy laxa, esconde deuda técnica bajo la etiqueta "Terminado".</li>
-        <li>Si es muy estricta para la madurez del equipo, nada se completa a tiempo.</li>
-      </ul></div>
-    </div>
+    <a class="to-top" id="toTop" href="#" aria-label="Volver arriba">↑</a>
 
-    <p class="note reveal">Nota: formalmente la Guía de Scrum no llama "artefacto" a la Definition of Done — es el compromiso del Incremento. Se trata aquí como cuarto tema por enfoque didáctico del curso.</p>
-  </div>
-</section>
+    <script>
+      const revealEls = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("on");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      revealEls.forEach((el) => io.observe(el));
 
-<!-- SÍNTESIS -->
-<section id="sintesis">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>Síntesis</div>
-    <h2 class="reveal" style="font-size:clamp(2rem,4vw,3.4rem); font-weight:600; margin-top:2vh; max-width:22ch;">La jerarquía completa, de un vistazo</h2>
-    <div class="synth-wrap reveal">
-      <table class="synth">
-        <tr><th>Artefacto</th><th>Responde a</th><th>Gestiona</th><th>Compromiso</th></tr>
-        <tr><td class="artname">Product Backlog</td><td>Qué / por qué</td><td>Product Owner</td><td>Product Goal</td></tr>
-        <tr><td class="artname">Sprint Backlog</td><td>Cómo / cuándo</td><td>Developers</td><td>Sprint Goal</td></tr>
-        <tr><td class="artname">Incremento</td><td>Resultado</td><td>Todo el equipo</td><td>—</td></tr>
-        <tr><td class="artname">Definition of Done</td><td>Estándar de calidad</td><td>Todo el equipo</td><td>Del Incremento</td></tr>
-      </table>
-    </div>
-
-    <h3 class="reveal" style="font-size:clamp(1.5rem,2.6vw,2.1rem); font-weight:600; margin-top:10vh;">¿Son siempre la mejor opción?</h3>
-    <div class="balance reveal">
-      <div class="balance-col favor"><h3>A favor del marco</h3><ul>
-        <li>Transparencia → inspección → adaptación: reduce riesgo frente a un alcance cerrado desde el inicio.</li>
-        <li>Es el framework ágil más adoptado; hoy se usa también fuera del software.</li>
-      </ul></div>
-      <div class="balance-col contra"><h3>Límites documentados</h3><ul>
-        <li>Sobrecarga de eventos en equipos pequeños o de ritmo muy rápido.</li>
-        <li>Rigidez si se aplica de forma dogmática ante cambios de prioridad.</li>
-        <li>Escala mal más allá de 5–9 personas sin frameworks adicionales (LeSS, Scrum@Scale, SAFe).</li>
-      </ul></div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER / FUENTES -->
-<footer id="fuentes">
-  <div class="wrap">
-    <div class="tag reveal"><span class="dot"></span>Cierre <b>·</b> Fuentes verificadas</div>
-    <h2 class="reveal">Gracias. ¿Preguntas?</h2>
-    <ul class="refs reveal">
-      <li><b>Scrum Guide 2020 (oficial)</b>scrumguides.org</li>
-      <li><b>Scrum.org</b>Sprint Backlog, Definition of Done, Refinement</li>
-      <li><b>Scrum Alliance</b>Product Increment, Refinement</li>
-      <li><b>Age-of-Product.com</b>Scrum Guide 2020: Beyond Software</li>
-      <li><b>Agile Academy</b>Scrum Guide 2020 changes</li>
-      <li><b>Wrike</b>3 Artifacts of Scrum</li>
-      <li><b>Asana</b>Qué es el sprint backlog (State of AI at Work 2025)</li>
-      <li><b>Lucid</b>Guía de backlog de producto</li>
-      <li><b>Medium</b>A Good Faith Critique of Scrum</li>
-      <li><b>Aaron Gray</b>A Criticism of Scrum</li>
-      <li><b>Teamhood</b>Scrum advantages and disadvantages 2026</li>
-      <li><b>arXiv</b>Agile Software Development Methods: Review and Analysis</li>
-    </ul>
-    <div class="foot-bottom">
-      <span>Exposición conceptual de Scrum</span>
-      <span>Equipo de Artefactos · 5 integrantes</span>
-    </div>
-  </div>
-</footer>
-
-<a class="to-top" id="toTop" href="#" aria-label="Volver arriba">↑</a>
-
-<script>
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
-  }, {threshold:.12});
-  revealEls.forEach(el=>io.observe(el));
-
-  const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', ()=>{
-    toTop.classList.toggle('show', window.scrollY > 800);
-  });
-</script>
-
-</body>
+      const toTop = document.getElementById("toTop");
+      window.addEventListener("scroll", () => {
+        toTop.classList.toggle("show", window.scrollY > 800);
+      });
+    </script>
+  </body>
 </html>
