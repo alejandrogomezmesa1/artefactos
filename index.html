@@ -516,6 +516,10 @@
       .text-content ul { margin-left: 2.5vw; margin-bottom: 3vh; }
       .text-content li { margin-bottom: 1.5vh; }
       .text-content strong { color: var(--amber); font-weight: 600; }
+      .visual-support { width: 100%; max-width: 700px; height: auto; border-radius: 12px; margin: 4vh 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--line-strong); display: block;}
+      .example-box { background: rgba(61,110,150,0.08); border-left: 4px solid var(--blue); padding: 3vh 2vw; margin: 4vh 0; border-radius: 0 8px 8px 0; max-width: 75ch; }
+      .example-box h5 { font-family: 'IBM Plex Mono', monospace; font-size: .9rem; color: var(--blue); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 1.5vh; }
+      .example-box p { margin-bottom: 1vh; font-size: 1.05rem; }
 
       /* ---------- SYNTH TABLE ---------- */
       table.synth {
@@ -827,8 +831,15 @@
       <p>Es fundamental comprender que el Product Backlog está <strong>ordenado</strong>, no simplemente priorizado. La priorización clásica agrupa elementos (alta, media, baja), lo que a menudo resulta en cientos de ítems de "alta prioridad", creando cuellos de botella y ansiedad. El ordenamiento, por otro lado, obliga a tomar decisiones difíciles: siempre habrá un ítem número 1, un número 2 y un número 3. Los criterios para este ordenamiento pueden variar radicalmente: valor de negocio inmediato, mitigación de un riesgo técnico grave, dependencias lógicas, ventanas de oportunidad de mercado o incluso la necesidad de construir un prototipo para adquirir nuevo conocimiento.</p>
 
       <h4>El Concepto del Iceberg y el Refinamiento Continuo</h4>
+      <img class="visual-support reveal" src="assets/backlog_iceberg_1785185041606.png" alt="Representación abstracta del Product Backlog como un iceberg" />
       <p>Muchos agilistas comparan el Product Backlog con un iceberg. En la parte superior, visible sobre la superficie del agua, se encuentran los ítems que se trabajarán en los próximos 1 a 3 Sprints. Estos ítems son pequeños, granulares, altamente detallados y tienen estimaciones precisas. Están listos (Ready) para ser seleccionados. A medida que descendemos bajo el agua, los ítems se vuelven más grandes (épicas o temas), ambiguos y menos definidos. Detallar algo que el equipo no construirá hasta dentro de 6 meses es una forma de desperdicio (waste) en Lean, ya que el contexto seguramente cambiará.</p>
       <p>El proceso vital de mover ítems desde el fondo hacia la superficie se conoce como <strong>Refinamiento (Refinement)</strong>. Curiosamente, no es un evento formal con una caja de tiempo (timebox) estipulada por la Guía Scrum, sino una actividad continua y colaborativa donde el Product Owner y los Developers añaden detalle, criterios de aceptación, estimaciones y orden a los elementos. Desglosan requerimientos gigantes en porciones manejables que puedan ser completadas con seguridad dentro de un solo Sprint.</p>
+
+      <div class="example-box reveal">
+        <h5>Ejemplo Práctico: App de Streaming Musical</h5>
+        <p><strong>Ítem en la cima (Listo para Sprint):</strong> "Como usuario premium, quiero descargar una lista de reproducción para escucharla sin conexión y ahorrar datos móviles." (Estimado: 5 puntos, incluye diseño final y criterios técnicos claros).</p>
+        <p><strong>Ítem en el fondo (Épica sin refinar):</strong> "Integración profunda con sistema de infoentretenimiento de automóviles Tesla." (Muy grande, sin estimar, se detallará en el futuro cuando se acerque su fecha de implementación).</p>
+      </div>
 
       <h4>Antipatrones Comunes (Lo que hay que evitar)</h4>
       <ul>
@@ -936,11 +947,19 @@
       </ul>
 
       <h4>El Compromiso: Sprint Goal</h4>
+      <img class="visual-support reveal" src="assets/sprint_focus_1785185051473.png" alt="Representación del Sprint Goal como un lente de enfoque" />
       <p>El Sprint Goal es la piedra angular del Sprint Backlog y su existencia es obligatoria. Proporciona flexibilidad y empoderamiento a los Developers. A lo largo del Sprint, es habitual que el equipo descubra que el trabajo necesario es distinto, más complejo o extenso de lo que previó en la planificación. Cuando esto ocurre, los Developers colaboran con el Product Owner para renegociar el alcance interno (los ítems del "Qué"), pero bajo una premisa intocable: <strong>el Sprint Goal nunca se compromete ni se altera</strong> durante el Sprint. Esto asegura que, independientemente de los desafíos técnicos descubiertos, el equipo aún se enfoca en entregar el valor de negocio principal acordado, fomentando la innovación en el cómo llegar a la meta.</p>
 
       <h4>Un Artefacto Vivo y Propiedad Exclusiva de los Developers</h4>
       <p>El Sprint Backlog es creado enteramente por y para los Developers. Son ellos los únicos capacitados para decidir cuántos ítems seleccionar del Product Backlog (nadie, ni el CEO ni el Product Owner, puede empujarles más trabajo del que estiman posible lograr) y cómo ejecutarán el plan técnico. Además, es un artefacto vivo que emerge dinámicamente durante el Sprint. A medida que el equipo adquiere más conocimiento sobre la tecnología, la arquitectura o el dominio del negocio trabajando con el código, añaden, modifican o eliminan tareas de su plan táctico de manera fluida.</p>
       <p>El escenario principal para inspeccionar el progreso de este artefacto es la <strong>Daily Scrum</strong> (Scrum Diario). En este evento enfocado de 15 minutos, los Developers no dan un reporte de estado al jefe, sino que evalúan su avance colectivo hacia el Sprint Goal y adaptan su plan táctico conjunto (el Sprint Backlog) para las siguientes 24 horas.</p>
+
+      <div class="example-box reveal">
+        <h5>Ejemplo Práctico: E-commerce</h5>
+        <p><strong>Sprint Goal:</strong> "Permitir a los clientes pagar de forma segura utilizando Apple Pay para reducir la tasa de abandono del carrito."</p>
+        <p><strong>El "Qué" (Ítems seleccionados):</strong> Integrar API de Apple, Actualizar UI del carrito, Añadir registro de transacciones.</p>
+        <p><strong>Escenario de Flexibilidad:</strong> A mitad del Sprint, la integración de la UI toma más tiempo del previsto. Los Developers y el PO deciden descartar temporalmente la animación de éxito personalizada, priorizando que la transacción funcione, salvaguardando el Sprint Goal central.</p>
+      </div>
 
       <h4>Antipatrones Comunes (Lo que hay que evitar)</h4>
       <ul>
@@ -1042,6 +1061,7 @@
       <p>El Incremento es el objetivo definitivo y la razón de ser del marco Scrum. Es el resultado medible, empírico y observable del trabajo duro y coordinado de todo el equipo durante el ciclo. No se trata de un voluminoso documento de diseño arquitectónico, ni de un conjunto de wireframes aprobados, ni siquiera de millones de líneas de código en una rama aislada de desarrollo esperando meses para ver la luz. Un Incremento es una pieza de producto funcional, sólidamente probada, completamente integrada y utilizable que aporta valor comprobable al usuario final, al cliente o al negocio.</p>
       
       <h4>La Naturaleza Aditiva y la Integración Obligatoria</h4>
+      <img class="visual-support reveal" src="assets/increment_blocks_1785185072112.png" alt="Representación del Incremento como bloques combinándose establemente" />
       <p>Un concepto crucial y a menudo malinterpretado del Incremento es que su naturaleza es estrictamente aditiva y acumulativa. Cada nuevo Incremento que un equipo construye no existe en el vacío ni en un entorno estéril; debe integrarse sin fisuras con todos los Incrementos entregados en los Sprints anteriores desde la concepción del producto. Esto significa que si en el Sprint 1 se entregó un sistema robusto de inicio de sesión, y en el Sprint 2 se desarrolla un catálogo interactivo de productos, el Incremento resultante del Sprint 2 es el catálogo operando armónicamente junto con el inicio de sesión. La prueba de fuego técnica es que el ecosistema completo siga funcionando a la perfección y no se haya roto funcionalidad pasada (una disciplina conocida en ingeniería como prevención de regresiones).</p>
       
       <h4>Potencialmente Entregable vs. Liberado a Producción</h4>
@@ -1049,6 +1069,13 @@
       
       <h4>Múltiples Incrementos en un solo Sprint</h4>
       <p>Aunque en las implementaciones iniciales de Scrum se asume que el Incremento se consolida y presenta mágicamente al final del Sprint (específicamente en la Sprint Review), las versiones modernas de la Guía hacen especial énfasis en que un equipo maduro puede y debe crear múltiples Incrementos dentro de la misma iteración. En entornos de madurez tecnológica alta, donde se aplican prácticas de Integración Continua y Entrega Continua (CI/CD), un equipo podría estar creando, verificando y entregando Incrementos valiosos múltiples veces al día. La Sprint Review, por tanto, nunca debe considerarse una puerta de calidad final o una barrera burocrática para entregar valor; simplemente es un momento de pausa y cadencia formal para inspeccionar colectivamente todo lo logrado frente a los stakeholders.</p>
+
+      <div class="example-box reveal">
+        <h5>Ejemplo Práctico: Aplicación Bancaria</h5>
+        <p><strong>Sprint 1:</strong> Se crea un Incremento que permite visualizar el saldo de la cuenta corriente. Se valida la arquitectura base.</p>
+        <p><strong>Sprint 2:</strong> Se añade la funcionalidad de transferencias locales. El nuevo Incremento incluye ambas cosas integradas. Un usuario ahora puede ver el saldo, transferir, y el saldo se actualiza correctamente.</p>
+        <p>Si la transferencia funciona en aislado pero rompe la pantalla de saldo, el trabajo está defectuoso y el Incremento no se considera válido ni terminado.</p>
+      </div>
 
       <h4>Antipatrones Comunes (Lo que hay que evitar)</h4>
       <ul>
@@ -1145,6 +1172,7 @@
       <p>La Definition of Done (DoD) o "Definición de Terminado" no es simplemente una molesta lista de chequeo burocrática; es la garantía inquebrantable de calidad y el compromiso de transparencia del equipo frente a toda la organización. Representa el estándar universal, objetivo y acordado que debe cumplirse inexcusablemente para que cualquier ítem del Product Backlog pueda considerarse parte viva de un Incremento. Si el Incremento responde a la pregunta "¿Qué valor estamos entregando?", la Definition of Done es el filtro de rigor que responde a "¿Con qué nivel de calidad aseguramos ese entregable para que sea sólido, seguro y económicamente mantenible a futuro?".</p>
 
       <h4>DoD vs. Criterios de Aceptación: Resolviendo la Confusión</h4>
+      <img class="visual-support reveal" src="assets/dod_shield_1785185082935.png" alt="Escudo representando la Definition of Done" />
       <p>En la inmensa mayoría de las transiciones ágiles tempranas, es extremadamente común confundir la Definition of Done con los Criterios de Aceptación de las historias de usuario. Sin embargo, sus propósitos, dominios y escalas de aplicación son profundamente distintos:</p>
       <ul>
         <li><strong>Definition of Done (DoD):</strong> Es macro y aplica uniformemente a <em>absolutamente todos</em> los elementos desarrollados durante cualquier Sprint. Son reglas universales del producto o de la empresa. <em>Ejemplos:</em> Todo código nuevo debe ser revisado por un par (Peer Review), debe pasar las pruebas automatizadas de seguridad estática (SonarQube sin vulnerabilidades críticas), debe estar integrado sin conflictos en la rama principal (Main/Master), no degrada el rendimiento de la aplicación en más de 200ms, y debe acompañarse de notas técnicas de versión.</li>
@@ -1160,6 +1188,18 @@
       <p>La Definition of Done es un documento vivo; no está grabada en piedra el día 1 del proyecto para la eternidad. Cuando un nuevo equipo Scrum se forma, especialmente en ecosistemas tecnológicos precarios (legacy), su DoD inicial puede (y debe) ser modesta, pragmática y realista para evitar parálisis (ej. "El código compila sin errores críticos conocidos y fue probado manualmente por otro miembro del equipo en el entorno de desarrollo").</p>
       <p>Sin embargo, a medida que el equipo madura, reduce su deuda técnica y adopta mejores herramientas (prácticas DevOps, suites de pruebas unitarias y de integración automatizadas, infraestructura como código, despliegue continuo), se espera y se exige que dediquen tiempo, usualmente durante los debates de la <strong>Sprint Retrospective</strong>, para inspeccionar y hacer deliberadamente más rigurosa su DoD. Por ejemplo, elevando el listón a: "Pruebas de estrés y carga superadas exitosamente, revisión de seguridad dinámica (DAST) sin alertas medias, cobertura de código (Test Coverage) superior al 85%, y despliegue automatizado sin tiempo de inactividad (Zero Downtime Deployment)".</p>
       <p>Además, si la organización matriz, departamento de TI o PMO ya posee una DoD estandarizada corporativa (por cuestiones de cumplimiento legal o estándares ISO), todos los equipos Scrum que trabajan para ellos deben adoptarla como su umbral mínimo innegociable, conservando la libertad de agregar criterios adicionales más estrictos que sean específicos para la naturaleza de su producto concreto.</p>
+
+      <div class="example-box reveal">
+        <h5>Ejemplo Práctico: Lista de Chequeo de una DoD Realista</h5>
+        <p>Para considerar una funcionalidad lista para el Incremento, debe cumplir lo siguiente:</p>
+        <ul style="margin-top:1vh;">
+          <li>Código revisado y aprobado por al menos 1 desarrollador adicional (Peer Review).</li>
+          <li>Cobertura de pruebas unitarias superior al 80%.</li>
+          <li>Sin advertencias críticas o medias de seguridad estática en SonarQube.</li>
+          <li>Integrado en la rama <code>main</code> sin conflictos.</li>
+          <li>La funcionalidad fue validada por el Product Owner en un entorno de pruebas (Staging).</li>
+        </ul>
+      </div>
 
       <h4>Antipatrones Comunes y Formas de Sabotaje (Lo que hay que evitar)</h4>
       <ul>
